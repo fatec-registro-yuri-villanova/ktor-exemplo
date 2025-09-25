@@ -23,6 +23,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
+import com.fatec.ktor.ui.components.FeriadoItem
 
 @Composable
 fun FeriadosScreen(
@@ -89,13 +90,13 @@ fun FeriadosScreen(
             is FeriadosScreenState.Success->{
                 LazyColumn {
                     items (state.feriados) { feriado ->
-                        Text("Feriado é ${feriado.name}")
+                        FeriadoItem(feriado = feriado)
                     }
                 }
             }
-            is FeriadosScreenState.Error->{}
+            is FeriadosScreenState.Error->{
+                Text(text = state.message, color = MaterialTheme.colorScheme.error)
+            }
         }
-
     }
-
 }
